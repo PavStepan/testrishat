@@ -10,14 +10,18 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 class SuccessView(TemplateView):
+    """ Представление удачно совершённой покупки """
+
     template_name = 'app_pay/success.html'
 
 
 class CancelView(TemplateView):
+    """ Представление отклонения покупки """
     template_name = 'app_pay/cancel.html'
 
 
 class ItemDetailView(DetailView):
+    """ Детальное представление единицы товара """
 
     model = Item
     template_name = 'app_pay/item_detail.html'
@@ -32,6 +36,7 @@ class ItemDetailView(DetailView):
 
 
 class CreateCheckoutSessionView(View):
+    """ Представление ID сессии """
 
     def get(self, request, *args, **kwargs):
         item_id = self.kwargs['pk']
@@ -46,7 +51,6 @@ class CreateCheckoutSessionView(View):
                         'unit_amount': item.price,
                         'product_data': {
                             'name': item.name,
-                            #'images': ['Ссылка'],
                         },
                     },
                     'quantity': 1,

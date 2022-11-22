@@ -4,6 +4,7 @@ from app_pay.models import Item
 
 
 class ItemAdmin(admin.ModelAdmin):
+    """  Отображение в админ панели товаров """
     list_display = ['id', 'name']
 
 
